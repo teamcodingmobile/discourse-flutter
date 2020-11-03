@@ -16,9 +16,9 @@ class TopicsResponse {
     this.topicList,
   });
 
-  final List<User> users;
-  final List<dynamic> primaryGroups;
-  final TopicList topicList;
+  List<User> users;
+  List<dynamic> primaryGroups;
+  TopicList topicList;
 
   factory TopicsResponse.fromJson(Map<String, dynamic> json) => TopicsResponse(
         users: List<User>.from(json["users"].map((x) => User.fromJson(x))),
@@ -44,13 +44,13 @@ class TopicList {
     this.topics,
   });
 
-  final bool canCreateTopic;
-  final String moreTopicsUrl;
-  final dynamic draft;
-  final String draftKey;
-  final int draftSequence;
-  final int perPage;
-  final List<Topic> topics;
+  bool canCreateTopic;
+  String moreTopicsUrl;
+  dynamic draft;
+  String draftKey;
+  int draftSequence;
+  int perPage;
+  List<Topic> topics;
 
   factory TopicList.fromJson(Map<String, dynamic> json) => TopicList(
         canCreateTopic: json["can_create_topic"],
@@ -111,40 +111,40 @@ class Topic {
     this.posters,
   });
 
-  final int id;
-  final String title;
-  final String fancyTitle;
-  final String slug;
-  final int postsCount;
-  final int replyCount;
-  final int highestPostNumber;
-  final String imageUrl;
-  final DateTime createdAt;
-  final DateTime lastPostedAt;
-  final bool bumped;
-  final DateTime bumpedAt;
-  final bool unseen;
-  final int lastReadPostNumber;
-  final int unread;
-  final int newPosts;
-  final bool pinned;
-  final dynamic unpinned;
-  final String excerpt;
-  final bool visible;
-  final bool closed;
-  final bool archived;
-  final int notificationLevel;
-  final bool bookmarked;
-  final bool liked;
-  final int views;
-  final int likeCount;
-  final bool hasSummary;
-  final Archetype archetype;
-  final String lastPosterUsername;
-  final int categoryId;
-  final bool pinnedGlobally;
-  final dynamic featuredLink;
-  final List<Poster> posters;
+  int id;
+  String title;
+  String fancyTitle;
+  String slug;
+  int postsCount;
+  int replyCount;
+  int highestPostNumber;
+  String imageUrl;
+  DateTime createdAt;
+  DateTime lastPostedAt;
+  bool bumped;
+  DateTime bumpedAt;
+  bool unseen;
+  int lastReadPostNumber;
+  int unread;
+  int newPosts;
+  bool pinned;
+  dynamic unpinned;
+  String excerpt;
+  bool visible;
+  bool closed;
+  bool archived;
+  int notificationLevel;
+  bool bookmarked;
+  bool liked;
+  int views;
+  int likeCount;
+  bool hasSummary;
+  Archetype archetype;
+  String lastPosterUsername;
+  int categoryId;
+  bool pinnedGlobally;
+  dynamic featuredLink;
+  List<Poster> posters;
 
   factory Topic.fromJson(Map<String, dynamic> json) => Topic(
         id: json["id"],
@@ -240,10 +240,10 @@ class Poster {
     this.primaryGroupId,
   });
 
-  final Extras extras;
-  final Description description;
-  final int userId;
-  final dynamic primaryGroupId;
+  Extras extras;
+  Description description;
+  int userId;
+  dynamic primaryGroupId;
 
   factory Poster.fromJson(Map<String, dynamic> json) => Poster(
         extras:
@@ -289,10 +289,10 @@ class User {
     this.avatarTemplate,
   });
 
-  final int id;
-  final String username;
-  final String name;
-  final String avatarTemplate;
+  int id;
+  String username;
+  String name;
+  String avatarTemplate;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
         id: json["id"],
