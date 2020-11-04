@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => new TopicsService()),
+        //ChangeNotifierProvider(create: (context) => new UsersService()),
       ],
       child: MaterialApp(
         title: 'Discourse',

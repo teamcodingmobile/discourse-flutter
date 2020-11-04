@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 
 class ListTopics extends StatelessWidget {
   final List<Topic> topics;
-  const ListTopics(this.topics);
+  final List<User> users;
+  const ListTopics(this.topics, this.users);
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +14,7 @@ class ListTopics extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         return _List(
           topic: this.topics[index],
+          user: this.users[index],
           index: index,
         );
       },
@@ -23,8 +25,10 @@ class ListTopics extends StatelessWidget {
 class _List extends StatelessWidget {
   final Topic topic;
   final int index;
+  final User user;
 
-  const _List({@required this.topic, @required this.index});
+  const _List(
+      {@required this.topic, @required this.index, @required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -32,27 +36,29 @@ class _List extends StatelessWidget {
       children: <Widget>[
         _TarjetTopic(index: index, topic: topic),
         _TarjetSlugTopic(topic: topic),
-        _TarjetImage(),
+        _TarjetImage(user: user),
       ],
     );
   }
 }
 
 class _TarjetImage extends StatelessWidget {
-  const _TarjetImage({Key key});
+  final User user;
+
+  const _TarjetImage({this.user});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      /*
-      child: FadeInImage(
-        placeholder: AssetImage('assets/img/giphy.gif'),
-        image: NetworkImage('url de la imagen en User.avatarTemplate'),
-      ),
-      */
-      child: Image(
-        image: AssetImage('assets/img/no-image.png'),
-      ),
+      child: (user.avatarTemplate != null)
+          ? FadeInImage(
+              placeholder: AssetImage('assets/img/giphy.gif'),
+              //image: NetworkImage(user.avatarTemplate),
+              image: AssetImage('assets/img/no-image.png'),
+            )
+          : Image(
+              image: AssetImage('assets/img/no-image.png'),
+            ),
     );
   }
 }
@@ -60,9 +66,7 @@ class _TarjetImage extends StatelessWidget {
 class _TarjetSlugTopic extends StatelessWidget {
   final Topic topic;
 
-  const _TarjetSlugTopic({
-    @required this.topic,
-  });
+  const _TarjetSlugTopic({@required this.topic});
 
   @override
   Widget build(BuildContext context) {

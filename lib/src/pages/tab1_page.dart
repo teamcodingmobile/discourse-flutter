@@ -8,6 +8,8 @@ class Tab1Page extends StatelessWidget {
   Widget build(BuildContext context) {
     final topicsService = Provider.of<TopicsService>(context);
 
-    return Scaffold(body: ListTopics(topicsService.listTopics));
+    return Scaffold(
+      body: ListTopics(topicsService.listTopics, topicsService.listUsers),
+    );
   }
 }
