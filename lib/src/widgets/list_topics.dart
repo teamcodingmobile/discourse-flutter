@@ -50,35 +50,35 @@ class _List extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Container(
-                  child: Text('50'),
+                  child: Text('${topic.postsCount}'),
                   padding: EdgeInsets.only(left: 15.0, bottom: 10.0),
                 ),
                 Container(
                   padding: EdgeInsets.only(left: 5.0, bottom: 10.0),
                   child: Icon(
-                    Icons.home,
+                    Icons.computer,
                     size: 20.0,
                   ),
                 ),
                 Container(
                   padding: EdgeInsets.only(left: 15.0, bottom: 10.0),
-                  child: Text('50'),
+                  child: Text('${topic.highestPostNumber}'),
                 ),
                 Container(
                   padding: EdgeInsets.only(left: 5.0, bottom: 10.0),
                   child: Icon(
-                    Icons.home,
+                    Icons.format_list_numbered,
                     size: 20.0,
                   ),
                 ),
                 Container(
                   padding: EdgeInsets.only(left: 15.0, bottom: 10.0),
-                  child: Text('50'),
+                  child: Text('${topic.views}'),
                 ),
                 Container(
                   padding: EdgeInsets.only(left: 5.0, bottom: 10.0),
                   child: Icon(
-                    Icons.home,
+                    Icons.view_list,
                     size: 20.0,
                   ),
                 ),

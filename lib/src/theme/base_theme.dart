@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
 
-final myTheme = ThemeData.dark().copyWith(
+final myTheme = ThemeData.light().copyWith(
     accentColor: Colors.blue,
     visualDensity: VisualDensity.adaptivePlatformDensity);
