@@ -1,5 +1,4 @@
 import 'package:discourse/src/models/topics_models.dart';
-import 'package:discourse/src/theme/base_theme.dart';
 import 'package:flutter/material.dart';
 
 class ListTopics extends StatelessWidget {
@@ -14,7 +13,7 @@ class ListTopics extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         return _List(
           topic: this.topics[index],
-          user: this.users[index],
+          avatar: this.users[index],
           index: index,
         );
       },
@@ -25,85 +24,115 @@ class ListTopics extends StatelessWidget {
 class _List extends StatelessWidget {
   final Topic topic;
   final int index;
-  final User user;
+  final User avatar;
 
-  const _List(
-      {@required this.topic, @required this.index, @required this.user});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        _TarjetTopic(index: index, topic: topic),
-        _TarjetSlugTopic(topic: topic),
-        _TarjetImage(user: user),
-      ],
-    );
-  }
-}
-
-class _TarjetImage extends StatelessWidget {
-  final User user;
-
-  const _TarjetImage({this.user});
+  const _List({
+    @required this.topic,
+    @required this.index,
+    @required this.avatar,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: (user.avatarTemplate != null)
-          ? FadeInImage(
-              placeholder: AssetImage('assets/img/giphy.gif'),
-              //image: NetworkImage(user.avatarTemplate),
-              image: AssetImage('assets/img/no-image.png'),
-            )
-          : Image(
-              image: AssetImage('assets/img/no-image.png'),
+    return Center(
+      child: Card(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            ListTile(
+              leading: _Avatar(
+                avatar: avatar,
+              ),
+              title: _Title(topic: topic),
+              subtitle: _Slug(topic: topic),
             ),
-    );
-  }
-}
-
-class _TarjetSlugTopic extends StatelessWidget {
-  final Topic topic;
-
-  const _TarjetSlugTopic({@required this.topic});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 15),
-      child: Text(
-        topic.slug,
-        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  child: Text('50'),
+                  padding: EdgeInsets.only(left: 15.0, bottom: 10.0),
+                ),
+                Container(
+                  padding: EdgeInsets.only(left: 5.0, bottom: 10.0),
+                  child: Icon(
+                    Icons.home,
+                    size: 20.0,
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.only(left: 15.0, bottom: 10.0),
+                  child: Text('50'),
+                ),
+                Container(
+                  padding: EdgeInsets.only(left: 5.0, bottom: 10.0),
+                  child: Icon(
+                    Icons.home,
+                    size: 20.0,
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.only(left: 15.0, bottom: 10.0),
+                  child: Text('50'),
+                ),
+                Container(
+                  padding: EdgeInsets.only(left: 5.0, bottom: 10.0),
+                  child: Icon(
+                    Icons.home,
+                    size: 20.0,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
 }
 
-class _TarjetTopic extends StatelessWidget {
-  const _TarjetTopic({
-    @required this.index,
+class _Slug extends StatelessWidget {
+  const _Slug({
+    Key key,
     @required this.topic,
-  });
+  }) : super(key: key);
 
-  final int index;
   final Topic topic;
 
   @override
   Widget build(BuildContext context) {
+    return Text('${topic.slug}');
+  }
+}
+
+class _Title extends StatelessWidget {
+  const _Title({
+    Key key,
+    @required this.topic,
+  }) : super(key: key);
+
+  final Topic topic;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text('${topic.title}');
+  }
+}
+
+class _Avatar extends StatelessWidget {
+  const _Avatar({
+    Key key,
+    @required this.avatar,
+  }) : super(key: key);
+
+  final User avatar;
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      margin: EdgeInsets.only(bottom: 10),
-      child: Row(
-        children: <Widget>[
-          Text(
-            '${index + 1}. ',
-            style: TextStyle(color: myTheme.accentColor),
-          ),
-          Text(
-            '${topic.title}. ',
-          ),
-        ],
+      child: CircleAvatar(
+        backgroundImage: AssetImage('assets/img/no-image.png'),
+        radius: 28,
       ),
     );
   }
