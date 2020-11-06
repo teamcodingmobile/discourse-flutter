@@ -35,56 +35,59 @@ class _List extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Card(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            ListTile(
-              leading: _Avatar(
-                avatar: avatar,
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: Card(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              ListTile(
+                leading: _Avatar(
+                  avatar: avatar,
+                ),
+                title: _Title(topic: topic),
+                subtitle: _Slug(topic: topic),
               ),
-              title: _Title(topic: topic),
-              subtitle: _Slug(topic: topic),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Container(
-                  child: Text('${topic.postsCount}'),
-                  padding: EdgeInsets.only(left: 15.0, bottom: 10.0),
-                ),
-                Container(
-                  padding: EdgeInsets.only(left: 5.0, bottom: 10.0),
-                  child: Icon(
-                    Icons.computer,
-                    size: 20.0,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    child: Text('${topic.postsCount}'),
+                    padding: EdgeInsets.only(left: 15.0, bottom: 10.0),
                   ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(left: 15.0, bottom: 10.0),
-                  child: Text('${topic.highestPostNumber}'),
-                ),
-                Container(
-                  padding: EdgeInsets.only(left: 5.0, bottom: 10.0),
-                  child: Icon(
-                    Icons.format_list_numbered,
-                    size: 20.0,
+                  Container(
+                    padding: EdgeInsets.only(left: 5.0, bottom: 10.0),
+                    child: Icon(
+                      Icons.computer,
+                      size: 20.0,
+                    ),
                   ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(left: 15.0, bottom: 10.0),
-                  child: Text('${topic.views}'),
-                ),
-                Container(
-                  padding: EdgeInsets.only(left: 5.0, bottom: 10.0),
-                  child: Icon(
-                    Icons.view_list,
-                    size: 20.0,
+                  Container(
+                    padding: EdgeInsets.only(left: 15.0, bottom: 10.0),
+                    child: Text('${topic.highestPostNumber}'),
                   ),
-                ),
-              ],
-            ),
-          ],
+                  Container(
+                    padding: EdgeInsets.only(left: 5.0, bottom: 10.0),
+                    child: Icon(
+                      Icons.format_list_numbered,
+                      size: 20.0,
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(left: 15.0, bottom: 10.0),
+                    child: Text('${topic.views}'),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(left: 5.0, bottom: 10.0),
+                    child: Icon(
+                      Icons.view_list,
+                      size: 20.0,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
