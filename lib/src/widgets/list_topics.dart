@@ -91,20 +91,6 @@ class _List extends StatelessWidget {
   }
 }
 
-class _Slug extends StatelessWidget {
-  const _Slug({
-    Key key,
-    @required this.topic,
-  }) : super(key: key);
-
-  final Topic topic;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text('${topic.slug}');
-  }
-}
-
 class _Title extends StatelessWidget {
   const _Title({
     Key key,
@@ -115,7 +101,27 @@ class _Title extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('${topic.title}');
+    return Padding(
+      padding: const EdgeInsets.only(left: 4.0),
+      child: Text('${topic.title}'),
+    );
+  }
+}
+
+class _Slug extends StatelessWidget {
+  const _Slug({
+    Key key,
+    @required this.topic,
+  }) : super(key: key);
+
+  final Topic topic;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 4.0),
+      child: Text('${topic.slug}'),
+    );
   }
 }
 
