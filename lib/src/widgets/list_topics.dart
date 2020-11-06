@@ -9,7 +9,7 @@ class ListTopics extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: this.topics.length,
+      itemCount: 16, //this.topics.length,
       itemBuilder: (BuildContext context, int index) {
         return _List(
           topic: this.topics[index],
@@ -101,6 +101,12 @@ class _Title extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Comprobaciones de error
+    if (topic.title == null) {
+      topic.title = "Sin información";
+    } else {
+      ///
+    }
     return Padding(
       padding: const EdgeInsets.only(left: 4.0),
       child: Text('${topic.title}'),
@@ -118,6 +124,12 @@ class _Slug extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Comprobaciones de error
+    if (topic.slug == null) {
+      topic.slug = "Sin información";
+    } else {
+      ///
+    }
     return Padding(
       padding: const EdgeInsets.only(left: 4.0),
       child: Text('${topic.slug}'),

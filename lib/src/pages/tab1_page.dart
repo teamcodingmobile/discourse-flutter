@@ -9,6 +9,13 @@ class Tab1Page extends StatelessWidget {
     final topicsService = Provider.of<TopicsService>(context);
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text(
+          'Topics',
+          style: TextStyle(color: Colors.black),
+        ),
+      ),
       body: ListTopics(topicsService.listTopics, topicsService.listUsers),
     );
   }

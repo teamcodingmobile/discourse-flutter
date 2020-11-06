@@ -20,7 +20,10 @@ class MyApp extends StatelessWidget {
         title: 'Discourse',
         debugShowCheckedModeBanner: false,
         theme: myTheme,
-        home: TabsPage(),
+        home: Scaffold(
+          body: TabsPage(),
+        ),
+        //TabsPage(),
       ),
     );
   }
