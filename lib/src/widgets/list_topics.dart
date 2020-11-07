@@ -39,49 +39,95 @@ class _List extends StatelessWidget {
         padding: const EdgeInsets.all(4.0),
         child: Card(
           child: Column(
-            mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               ListTile(
                 leading: _Avatar(
                   avatar: avatar,
                 ),
-                title: _Title(topic: topic),
-                subtitle: _Slug(topic: topic),
+                title: _UserName(avatar: avatar),
+                subtitle: _Created(topic: topic),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    child: Text('${topic.postsCount}'),
-                    padding: EdgeInsets.only(left: 15.0, bottom: 10.0),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(left: 5.0, bottom: 10.0),
-                    child: Icon(
-                      Icons.computer,
-                      size: 20.0,
+              _Title(topic: topic),
+              _BottomBar(topic: topic),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _BottomBar extends StatelessWidget {
+  const _BottomBar({@required this.topic});
+
+  final Topic topic;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Container(
+        decoration: BoxDecoration(color: const Color(0xfff8f8f8)),
+        padding: EdgeInsets.symmetric(vertical: 8.0),
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 8.0),
+          child: Row(
+            children: <Widget>[
+              Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 50.0),
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          child: Text('${topic.postsCount}'),
+                        ),
+                        Container(
+                          child: Icon(
+                            Icons.format_list_numbered,
+                            size: 20.0,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  Container(
-                    padding: EdgeInsets.only(left: 15.0, bottom: 10.0),
-                    child: Text('${topic.highestPostNumber}'),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(left: 5.0, bottom: 10.0),
-                    child: Icon(
-                      Icons.format_list_numbered,
-                      size: 20.0,
+                ],
+              ),
+              Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          child: Text('${topic.postsCount}'),
+                        ),
+                        Container(
+                          child: Icon(
+                            Icons.view_list,
+                            size: 20.0,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  Container(
-                    padding: EdgeInsets.only(left: 15.0, bottom: 10.0),
-                    child: Text('${topic.views}'),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(left: 5.0, bottom: 10.0),
-                    child: Icon(
-                      Icons.view_list,
-                      size: 20.0,
+                ],
+              ),
+              Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 50.0),
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          child: Text('${topic.replyCount}'),
+                        ),
+                        Container(
+                          child: Icon(
+                            Icons.view_list,
+                            size: 20.0,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -95,56 +141,58 @@ class _List extends StatelessWidget {
 }
 
 class _Title extends StatelessWidget {
-  const _Title({
-    Key key,
-    @required this.topic,
-  }) : super(key: key);
+  const _Title({@required this.topic});
 
   final Topic topic;
 
   @override
   Widget build(BuildContext context) {
-    // Comprobaciones de error
-    if (topic.title == null) {
-      topic.title = "Sin información";
-    } else {
-      ///
-    }
-    return Padding(
-      padding: const EdgeInsets.only(left: 4.0),
-      child: Text('${topic.title}'),
+    return Container(
+      child: Container(
+        padding: EdgeInsets.only(left: 20.0, bottom: 8.0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              child: Text('${topic.title}'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
 
-class _Slug extends StatelessWidget {
-  const _Slug({
-    Key key,
-    @required this.topic,
-  }) : super(key: key);
+class _UserName extends StatelessWidget {
+  const _UserName({@required this.avatar});
+
+  final User avatar;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 4.0),
+      child: Text('${avatar.username}'),
+    );
+  }
+}
+
+class _Created extends StatelessWidget {
+  const _Created({@required this.topic});
 
   final Topic topic;
 
   @override
   Widget build(BuildContext context) {
-    // Comprobaciones de error
-    if (topic.slug == null) {
-      topic.slug = "Sin información";
-    } else {
-      ///
-    }
     return Padding(
       padding: const EdgeInsets.only(left: 4.0),
-      child: Text('${topic.slug}'),
+      child: Text('${topic.createdAt}'),
     );
   }
 }
 
 class _Avatar extends StatelessWidget {
-  const _Avatar({
-    Key key,
-    @required this.avatar,
-  }) : super(key: key);
+  const _Avatar({@required this.avatar});
 
   final User avatar;
 

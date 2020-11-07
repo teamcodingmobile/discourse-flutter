@@ -15,6 +15,7 @@ class Tab1Page extends StatelessWidget {
         title: Text(
           'Topics',
           style: TextStyle(color: Colors.black),
+          textAlign: TextAlign.left,
         ),
       ),
       body: Center(
