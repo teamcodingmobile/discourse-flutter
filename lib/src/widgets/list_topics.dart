@@ -9,7 +9,7 @@ class ListTopics extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 16, //this.topics.length,
+      itemCount: this.topics.length,
       itemBuilder: (BuildContext context, int index) {
         return _List(
           topic: this.topics[index],
@@ -184,11 +184,15 @@ class _Created extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DateTime convert = topic.createdAt;
+    DateTime dateApi = topic.createdAt;
+    DateTime now = new DateTime.now();
+    var diffDt = now.difference(dateApi);
+
     return Padding(
       padding: const EdgeInsets.only(left: 4.0),
-      //child: Text('${topic.createdAt}'),
-      child: Text('${convert.year}/${convert.month}/${convert.day}'),
+      child: (diffDt.inDays < 1)
+          ? Text('${diffDt.inHours} hours ago')
+          : Text('${diffDt.inDays} days ago'),
     );
   }
 }
