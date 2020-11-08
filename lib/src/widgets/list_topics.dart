@@ -184,9 +184,11 @@ class _Created extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime convert = topic.createdAt;
     return Padding(
       padding: const EdgeInsets.only(left: 4.0),
-      child: Text('${topic.createdAt}'),
+      //child: Text('${topic.createdAt}'),
+      child: Text('${convert.year}/${convert.month}/${convert.day}'),
     );
   }
 }
