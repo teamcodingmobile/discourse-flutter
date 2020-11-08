@@ -71,6 +71,7 @@ class _BottomBar extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 8.0),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Column(
                 children: [
