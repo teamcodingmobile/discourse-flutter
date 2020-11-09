@@ -20,12 +20,9 @@ class Tab1Page extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        backgroundColor: colorButton,
-        onPressed: () {
-          // Add your onPressed code here!
-        },
-      ),
+          child: Icon(Icons.add),
+          backgroundColor: colorButton,
+          onPressed: () => Navigator.pushNamed(context, '/newTopic')),
       body: Center(
         child: Stack(
           children: [

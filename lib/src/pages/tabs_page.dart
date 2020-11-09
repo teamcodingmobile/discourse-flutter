@@ -27,7 +27,7 @@ class _Navigation extends StatelessWidget {
         BottomNavigationBarItem(
             icon: Icon(Icons.filter_list), title: Text('Topics')),
         BottomNavigationBarItem(
-            icon: Icon(Icons.view_list), title: Text('New topic')),
+            icon: Icon(Icons.search), title: Text('Search')),
         BottomNavigationBarItem(
             icon: Icon(Icons.person_outline), title: Text('Profile')),
       ],

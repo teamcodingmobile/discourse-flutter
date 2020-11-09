@@ -74,7 +74,8 @@ class _BottomBar extends StatelessWidget {
                     child: Row(
                       children: <Widget>[
                         Container(
-                          child: Text('${topic.postsCount}'),
+                          child: Text('${topic.postsCount}',
+                              style: TextStyle(fontFamily: 'AvenirRegular')),
                         ),
                         Container(
                           child: Icon(
@@ -94,7 +95,8 @@ class _BottomBar extends StatelessWidget {
                     child: Row(
                       children: <Widget>[
                         Container(
-                          child: Text('${topic.postsCount}'),
+                          child: Text('${topic.postsCount}',
+                              style: TextStyle(fontFamily: 'AvenirBold')),
                         ),
                         Container(
                           child: Icon(
@@ -149,7 +151,8 @@ class _Title extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Container(
-              child: Text('${topic.title}'),
+              child: Text('${topic.title}',
+                  style: TextStyle(fontFamily: 'AvenirBold')),
             ),
           ],
         ),
@@ -167,7 +170,8 @@ class _UserName extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 4.0),
-      child: Text('${topic.lastPosterUsername}'),
+      child: Text('${topic.lastPosterUsername}',
+          style: TextStyle(fontFamily: 'AvenirBold')),
     );
   }
 }

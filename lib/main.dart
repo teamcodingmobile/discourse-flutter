@@ -1,4 +1,7 @@
+import 'package:discourse/src/pages/tab1_page.dart';
 import 'package:discourse/src/services/topics_service.dart';
+import 'package:discourse/src/widgets/list_topics.dart';
+import 'package:discourse/src/widgets/new_topic.dart';
 import 'package:flutter/material.dart';
 import 'package:discourse/src/theme/base_theme.dart';
 import 'package:discourse/src/pages/tabs_page.dart';
