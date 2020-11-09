@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 
 class ListTopics extends StatelessWidget {
   final List<Topic> topics;
-  final List<User> users;
-  const ListTopics(this.topics, this.users);
+  const ListTopics(this.topics);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +12,6 @@ class ListTopics extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         return _List(
           topic: this.topics[index],
-          avatar: this.users[index],
           index: index,
         );
       },
@@ -24,12 +22,10 @@ class ListTopics extends StatelessWidget {
 class _List extends StatelessWidget {
   final Topic topic;
   final int index;
-  final User avatar;
 
   const _List({
     @required this.topic,
     @required this.index,
-    @required this.avatar,
   });
 
   @override
@@ -41,10 +37,8 @@ class _List extends StatelessWidget {
           child: Column(
             children: <Widget>[
               ListTile(
-                leading: _Avatar(
-                  avatar: avatar,
-                ),
-                title: _UserName(avatar: avatar),
+                leading: _Avatar(),
+                title: _UserName(topic: topic),
                 subtitle: _Created(topic: topic),
               ),
               _Title(topic: topic),
@@ -165,15 +159,15 @@ class _Title extends StatelessWidget {
 }
 
 class _UserName extends StatelessWidget {
-  const _UserName({@required this.avatar});
+  const _UserName({@required this.topic});
 
-  final User avatar;
+  final Topic topic;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 4.0),
-      child: Text('${avatar.username}'),
+      child: Text('${topic.lastPosterUsername}'),
     );
   }
 }
@@ -199,10 +193,6 @@ class _Created extends StatelessWidget {
 }
 
 class _Avatar extends StatelessWidget {
-  const _Avatar({@required this.avatar});
-
-  final User avatar;
-
   @override
   Widget build(BuildContext context) {
     return Container(

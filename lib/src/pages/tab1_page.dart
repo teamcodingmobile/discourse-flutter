@@ -29,7 +29,7 @@ class Tab1Page extends StatelessWidget {
       body: Center(
         child: Stack(
           children: [
-            ListTopics(topicsService.listTopics, topicsService.listUsers),
+            ListTopics(topicsService.listTopics),
             BarDesing(),
           ],
         ),
