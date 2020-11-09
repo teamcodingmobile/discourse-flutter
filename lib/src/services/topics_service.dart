@@ -11,15 +11,24 @@ class TopicsService with ChangeNotifier {
   List<User> listUsers = [];
 
   TopicsService() {
-    this.getlistTopics();
+    try {
+      this.getlistTopics();
+    } catch (e) {
+      print(e);
+    }
   }
 
   getlistTopics() async {
     final url = '$_URL_TOPICS/latest.json?apiKey=$_API_KEY';
-    final answer = await http.get(url);
-    final topicsResponse = topicsResponseFromJson(answer.body);
-    this.listTopics.addAll(topicsResponse.topicList.topics);
-    this.listUsers.addAll(topicsResponse.users);
-    notifyListeners();
+    final response = await http.get(url);
+    if (response.statusCode == 200) {
+      print("response Status ${response.statusCode}");
+      final topicsResponse = topicsResponseFromJson(response.body);
+      this.listTopics.addAll(topicsResponse.topicList.topics);
+      this.listUsers.addAll(topicsResponse.users);
+      notifyListeners();
+    } else {
+      print("response Status ${response.statusCode}");
+    }
   }
 }
