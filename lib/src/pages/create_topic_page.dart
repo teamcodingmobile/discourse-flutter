@@ -17,8 +17,21 @@ class CreateTopicPage extends StatelessWidget {
       body: Stack(
         children: [
           BarDesing(),
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
+            child: _myInput(),
+          ),
         ],
       ),
+    );
+  }
+
+  Widget _myInput() {
+    return TextField(
+      autofocus: true,
+      textCapitalization: TextCapitalization.sentences,
+      decoration: InputDecoration(hintText: 'Write your new topic'),
     );
   }
 }
