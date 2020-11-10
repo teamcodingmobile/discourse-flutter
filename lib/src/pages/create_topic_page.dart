@@ -1,7 +1,14 @@
 import 'package:discourse/src/widgets/bar_desing.dart';
 import 'package:flutter/material.dart';
 
-class CreateTopicPage extends StatelessWidget {
+class CreateTopicPage extends StatefulWidget {
+  @override
+  _CreateTopicPageState createState() => _CreateTopicPageState();
+}
+
+class _CreateTopicPageState extends State<CreateTopicPage> {
+  String _myTopicString;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,6 +39,13 @@ class CreateTopicPage extends StatelessWidget {
       autofocus: true,
       textCapitalization: TextCapitalization.sentences,
       decoration: InputDecoration(hintText: 'Write your new topic'),
+      onChanged: (value) {
+        setState(() {
+          _myTopicString = value;
+          print(_myTopicString);
+        });
+      },
+      onSubmitted: (value) => Navigator.pushNamed(context, 'tab1page'),
     );
   }
 }
