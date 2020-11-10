@@ -46,7 +46,7 @@ class _CreateTopicPageState extends State<CreateTopicPage> {
           print(_myTopicString);
         });
       },
-      onSubmitted: (value) => Navigator.pushNamed(context, 'tab1page'),
+      onSubmitted: (value) => Navigator.pop(context),
     );
   }
 }
