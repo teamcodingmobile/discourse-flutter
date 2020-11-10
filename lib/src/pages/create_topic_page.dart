@@ -12,6 +12,7 @@ class CreateTopicPage extends StatelessWidget {
           style: TextStyle(color: Colors.black),
           textAlign: TextAlign.center,
         ),
+        iconTheme: IconThemeData(color: Colors.black),
       ),
       body: Stack(
         children: [
