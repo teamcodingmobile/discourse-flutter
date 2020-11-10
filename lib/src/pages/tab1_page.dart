@@ -22,14 +22,12 @@ class Tab1Page extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
           backgroundColor: colorButton,
-          onPressed: () => Navigator.pushNamed(context, '/newTopic')),
-      body: Center(
-        child: Stack(
-          children: [
-            ListTopics(topicsService.listTopics),
-            BarDesing(),
-          ],
-        ),
+          onPressed: () => Navigator.pushNamed(context, 'createTopicPage')),
+      body: Stack(
+        children: [
+          ListTopics(topicsService.listTopics),
+          BarDesing(),
+        ],
       ),
     );
   }

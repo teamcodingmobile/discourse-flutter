@@ -64,68 +64,76 @@ class _BottomBar extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 8.0),
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 50.0),
-                    child: Row(
-                      children: <Widget>[
-                        Container(
-                          child: Text('${topic.postsCount}',
-                              style: TextStyle(fontFamily: 'AvenirRegular')),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 45.0),
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                              child: Text(
+                                '${topic.postsCount}',
+                                // style: TextStyle(fontFamily: 'AvenirRegular')
+                              ),
+                            ),
+                            Container(
+                              child: Icon(
+                                Icons.format_list_numbered,
+                                size: 20.0,
+                              ),
+                            ),
+                          ],
                         ),
-                        Container(
-                          child: Icon(
-                            Icons.format_list_numbered,
-                            size: 20.0,
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.0),
-                    child: Row(
-                      children: <Widget>[
-                        Container(
-                          child: Text('${topic.postsCount}',
-                              style: TextStyle(fontFamily: 'AvenirBold')),
+                  Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 15.0),
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                              child: Text(
+                                '${topic.postsCount}',
+                                //style: TextStyle(fontFamily: 'AvenirBold')
+                              ),
+                            ),
+                            Container(
+                              child: Icon(
+                                Icons.view_list,
+                                size: 20.0,
+                              ),
+                            ),
+                          ],
                         ),
-                        Container(
-                          child: Icon(
-                            Icons.view_list,
-                            size: 20.0,
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 50.0),
-                    child: Row(
-                      children: <Widget>[
-                        Container(
-                          child: Text('${topic.replyCount}'),
+                  Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 45.0),
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                              child: Text('${topic.replyCount}'),
+                            ),
+                            Container(
+                              child: Icon(
+                                Icons.view_list,
+                                size: 20.0,
+                              ),
+                            ),
+                          ],
                         ),
-                        Container(
-                          child: Icon(
-                            Icons.view_list,
-                            size: 20.0,
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -151,8 +159,10 @@ class _Title extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Container(
-              child: Text('${topic.title}',
-                  style: TextStyle(fontFamily: 'AvenirBold')),
+              child: Text(
+                '${topic.title}',
+                //style: TextStyle(fontFamily: 'AvenirBold')
+              ),
             ),
           ],
         ),
@@ -170,8 +180,10 @@ class _UserName extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 4.0),
-      child: Text('${topic.lastPosterUsername}',
-          style: TextStyle(fontFamily: 'AvenirBold')),
+      child: Text(
+        '${topic.lastPosterUsername}',
+        //style: TextStyle(fontFamily: 'AvenirBold')
+      ),
     );
   }
 }

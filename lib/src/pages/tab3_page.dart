@@ -1,3 +1,4 @@
+import 'package:discourse/src/widgets/bar_desing.dart';
 import 'package:flutter/material.dart';
 
 class Tab3Page extends StatelessWidget {
@@ -11,6 +12,11 @@ class Tab3Page extends StatelessWidget {
           style: TextStyle(color: Colors.black),
           textAlign: TextAlign.left,
         ),
+      ),
+      body: Stack(
+        children: [
+          BarDesing(),
+        ],
       ),
     );
   }
