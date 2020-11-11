@@ -1,4 +1,5 @@
 import 'package:discourse/src/services/topics_service.dart';
+import 'package:discourse/src/services/users_service.dart';
 import 'package:discourse/src/theme/base_theme.dart';
 import 'package:discourse/src/widgets/bar_desing.dart';
 import 'package:discourse/src/widgets/list_topics.dart';
@@ -9,6 +10,7 @@ class Tab1Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final topicsService = Provider.of<TopicsService>(context);
+    final usersService = Provider.of<UsersService>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -25,7 +27,7 @@ class Tab1Page extends StatelessWidget {
           onPressed: () => Navigator.pushNamed(context, 'createTopicPage')),
       body: Stack(
         children: [
-          ListTopics(topicsService.listTopics),
+          ListTopics(topicsService.listTopics, usersService.listUsers),
           BarDesing(),
         ],
       ),
