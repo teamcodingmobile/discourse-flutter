@@ -38,46 +38,34 @@ class HomePage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 140.0),
               child: Container(
-                child: Stack(
-                  children: [
-                    Text(
-                      'Cicilized discussion',
-                      style: TextStyle(
-                        fontSize: 22.0,
-                      ),
-                    ),
-                  ],
+                child: Text(
+                  'Cicilized discussion',
+                  style: TextStyle(
+                    fontSize: 22.0,
+                  ),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 110.0),
+              padding: const EdgeInsets.only(left: 108.0),
               child: Container(
                 alignment: Alignment.centerLeft,
-                child: Stack(
-                  children: [
-                    Text(
-                      'for your',
-                      style: TextStyle(fontSize: 22.0),
-                    ),
-                  ],
+                child: Text(
+                  'for your',
+                  style: TextStyle(fontSize: 22.0),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 110.0),
+              padding: const EdgeInsets.only(left: 108.0),
               child: Container(
                 alignment: Alignment.centerLeft,
-                child: Stack(
-                  children: [
-                    Text(
-                      'community',
-                      style: TextStyle(
-                        fontSize: 22.0,
-                        decoration: TextDecoration.underline,
-                      ),
-                    ),
-                  ],
+                child: Text(
+                  'community',
+                  style: TextStyle(
+                    fontSize: 22.0,
+                    decoration: TextDecoration.underline,
+                  ),
                 ),
               ),
             ),
