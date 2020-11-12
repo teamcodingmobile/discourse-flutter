@@ -27,8 +27,8 @@ class Tab1Page extends StatelessWidget {
           onPressed: () => Navigator.pushNamed(context, 'createTopicPage')),
       body: Stack(
         children: [
-          ListTopics(topicsService.listTopics, usersService.listUsers),
           BarDesing(),
+          ListTopics(topicsService.listTopics, usersService.listUsers),
         ],
       ),
     );
