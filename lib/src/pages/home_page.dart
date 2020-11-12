@@ -18,52 +18,118 @@ class HomePage extends StatelessWidget {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          //mainAxisAlignment: MainAxisAlignment.center,
+          //crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Stack(
-              children: <Widget>[
-                Positioned(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Container(
-                      width: 100,
-                      child: Image.asset('assets/img/discourseLogo405x111.jpg'),
+            Container(
+              child: Stack(
+                children: <Widget>[
+                  Positioned(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Container(
+                        width: 150,
+                        child:
+                            Image.asset('assets/img/discourseLogo405x111.jpg'),
+                      ),
                     ),
-                  ),
-                )
-              ],
-            ),
-            Text(
-              'Cicilized discussion',
-              style: TextStyle(
-                fontSize: 22.0,
-              ),
-            ),
-            Text(
-              'for your',
-              style: TextStyle(fontSize: 22.0),
-            ),
-            Text(
-              'community',
-              style: TextStyle(
-                fontSize: 22.0,
-                decoration: TextDecoration.underline,
+                  )
+                ],
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 20.0),
-              child: RaisedButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(6.0),
-                    side: BorderSide(color: Colors.blue)),
-                onPressed: () {},
-                color: Colors.blue,
-                textColor: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 30.0, right: 30.0),
-                  child:
-                      Text("Create an account", style: TextStyle(fontSize: 12)),
+              padding: const EdgeInsets.only(top: 140.0),
+              child: Container(
+                child: Stack(
+                  children: [
+                    Text(
+                      'Cicilized discussion',
+                      style: TextStyle(
+                        fontSize: 22.0,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 110.0),
+              child: Container(
+                alignment: Alignment.centerLeft,
+                child: Stack(
+                  children: [
+                    Text(
+                      'for your',
+                      style: TextStyle(fontSize: 22.0),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 110.0),
+              child: Container(
+                alignment: Alignment.centerLeft,
+                child: Stack(
+                  children: [
+                    Text(
+                      'community',
+                      style: TextStyle(
+                        fontSize: 22.0,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 20.0),
+                child: RaisedButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(6.0),
+                      side: BorderSide(color: Colors.blue)),
+                  onPressed: () {},
+                  color: Colors.blue,
+                  textColor: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+                    child: Text("Create an account",
+                        style: TextStyle(fontSize: 12)),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 100.0, top: 320),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          child: Text(
+                            'Already have an account?',
+                            style: TextStyle(fontSize: 14.0),
+                          ),
+                        ),
+                        Container(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Container(
+                              child: Text(
+                                'Log in',
+                                style: TextStyle(
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ),
