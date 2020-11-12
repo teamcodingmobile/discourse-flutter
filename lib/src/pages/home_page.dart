@@ -18,8 +18,6 @@ class HomePage extends StatelessWidget {
       ),
       body: Center(
         child: Column(
-          //mainAxisAlignment: MainAxisAlignment.center,
-          //crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
               child: Stack(
@@ -118,11 +116,15 @@ class HomePage extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.only(left: 8.0),
                             child: Container(
-                              child: Text(
-                                'Log in',
-                                style: TextStyle(
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.bold),
+                              child: GestureDetector(
+                                onTap: () =>
+                                    Navigator.pushNamed(context, 'login'),
+                                child: Text(
+                                  'Log in',
+                                  style: TextStyle(
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ),
                           ),
