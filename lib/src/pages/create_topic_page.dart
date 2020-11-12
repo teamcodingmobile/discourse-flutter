@@ -15,8 +15,9 @@ class _CreateTopicPageState extends State<CreateTopicPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        //leading: _Cancel(),
-        leading: _CancelText(),
+        iconTheme: IconThemeData(
+          color: Colors.black, //change your color here
+        ),
         backgroundColor: Colors.white,
         title: (Platform.isAndroid)
             ? _TextTitleTopicAndroid()
@@ -71,24 +72,6 @@ class _TextTitleTopiciOs extends StatelessWidget {
       child: Text(
         'Create Topic',
         style: TextStyle(color: Colors.black),
-      ),
-    );
-  }
-}
-
-class _CancelText extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 5.0),
-      child: new GestureDetector(
-        onTap: () {
-          Navigator.pop(context);
-        },
-        child: Text(
-          'Cancel',
-          style: TextStyle(color: Colors.black),
-        ),
       ),
     );
   }

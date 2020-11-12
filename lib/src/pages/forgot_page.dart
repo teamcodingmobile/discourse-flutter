@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class ForgotPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +32,7 @@ class LoginPage extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            'Login on Discourse',
+            'Recover Password',
             style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
           ),
           TextField(
@@ -40,35 +40,19 @@ class LoginPage extends StatelessWidget {
             textCapitalization: TextCapitalization.sentences,
             decoration: InputDecoration(hintText: 'Username'),
           ),
-          TextField(
-            autofocus: true,
-            textCapitalization: TextCapitalization.sentences,
-            decoration: InputDecoration(hintText: 'Password'),
-          ),
-          Container(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 100.0, top: 320),
+          Padding(
+            padding: const EdgeInsets.only(top: 100.0),
+            child: Container(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Row(
-                    children: [
-                      Container(
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: Container(
-                            child: GestureDetector(
-                              //onTap: () => Navigator.pushNamed(context, 'forgot'),
-                              child: Text(
-                                'Forgot your password ?',
-                                style: TextStyle(
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                  RaisedButton(
+                    child: Text(
+                      "Send email",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    color: Colors.blue,
+                    onPressed: () => {},
                   ),
                 ],
               ),
