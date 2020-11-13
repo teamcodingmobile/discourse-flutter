@@ -1,4 +1,3 @@
-import 'package:discourse/src/pages/home_page.dart';
 import 'package:discourse/src/pages/tab1_page.dart';
 import 'package:discourse/src/pages/tab2_page.dart';
 import 'package:discourse/src/pages/tab3_page.dart';
@@ -47,7 +46,7 @@ class _Pages extends StatelessWidget {
       controller: navigationModel.pageController,
       physics: NeverScrollableScrollPhysics(),
       children: <Widget>[
-        HomePage(),
+        //HomePage(),
         Tab1Page(),
         Tab2Page(),
         Tab3Page(),
