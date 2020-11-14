@@ -1,9 +1,12 @@
 import 'package:discourse/src/models/topics_models.dart';
+import 'package:discourse/src/models/users_models.dart';
 import 'package:flutter/material.dart';
 
 class ListTopics extends StatelessWidget {
   final List<Topic> topics;
-  const ListTopics(this.topics);
+  final List<DirectoryItem> users;
+
+  const ListTopics(this.topics, this.users);
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +16,7 @@ class ListTopics extends StatelessWidget {
         return _List(
           topic: this.topics[index],
           index: index,
+          user: this.users[index],
         );
       },
     );
@@ -21,11 +25,13 @@ class ListTopics extends StatelessWidget {
 
 class _List extends StatelessWidget {
   final Topic topic;
+  final DirectoryItem user;
   final int index;
 
   const _List({
     @required this.topic,
     @required this.index,
+    @required this.user,
   });
 
   @override
@@ -34,16 +40,24 @@ class _List extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(4.0),
         child: Card(
-          child: Column(
-            children: <Widget>[
-              ListTile(
-                leading: _Avatar(),
-                title: _UserName(topic: topic),
-                subtitle: _Created(topic: topic),
-              ),
-              _Title(topic: topic),
-              _BottomBar(topic: topic),
-            ],
+          child: GestureDetector(
+            onTap: () {
+              print('ID de la pelicula ${topic.id}');
+              Navigator.pushNamed(context, 'detailTopicPage', arguments: topic);
+            },
+            child: Column(
+              children: <Widget>[
+                ListTile(
+                  leading: _Avatar(
+                    user: user,
+                  ),
+                  title: _UserName(topic: topic),
+                  subtitle: _Created(topic: topic),
+                ),
+                _Title(topic: topic),
+                _BottomBar(topic: topic),
+              ],
+            ),
           ),
         ),
       ),
@@ -209,11 +223,16 @@ class _Created extends StatelessWidget {
 }
 
 class _Avatar extends StatelessWidget {
+  const _Avatar({@required this.user});
+
+  final DirectoryItem user;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       child: CircleAvatar(
-        backgroundImage: AssetImage('assets/img/no-image.png'),
+        //backgroundImage: AssetImage('assets/img/no-image.png'),
+        backgroundImage: NetworkImage(user.user.avatarTemplate), // [index]
         radius: 28,
       ),
     );

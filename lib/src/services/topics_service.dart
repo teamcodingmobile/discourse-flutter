@@ -8,7 +8,7 @@ const _API_KEY =
 
 class TopicsService with ChangeNotifier {
   List<Topic> listTopics = [];
-  List<User> listUsers = [];
+  // List<User> listUsers = [];
 
   TopicsService() {
     try {
@@ -25,7 +25,7 @@ class TopicsService with ChangeNotifier {
       print("response Status ${response.statusCode}");
       final topicsResponse = topicsResponseFromJson(response.body);
       this.listTopics.addAll(topicsResponse.topicList.topics);
-      this.listUsers.addAll(topicsResponse.users);
+      //this.listUsers.addAll(topicsResponse.users);
       notifyListeners();
     } else {
       print("response Status ${response.statusCode}");
