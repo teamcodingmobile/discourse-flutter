@@ -19,7 +19,8 @@ class TopicsService with ChangeNotifier {
   }
 
   getlistTopics() async {
-    final url = '$_URL_TOPICS/latest.json'; // ?apiKey=$_API_KEY
+    final url =
+        '$_URL_TOPICS/latest.json?apiKey=$_API_KEY'; // ?apiKey=$_API_KEY
     final response = await http.get(url);
     if (response.statusCode == 200) {
       print("response Status ${response.statusCode}");
