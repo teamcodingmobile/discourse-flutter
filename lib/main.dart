@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           //'tabspage': (_) => TabsPage(),
           'tab1page': (_) => Tab1Page(),
           'createTopicPage': (_) => CreateTopicPage(),
-          'detailTopicPage': (_) => DetailTopicPage(),
+          'detailTopicPage': (_) => DetailTopicPage()
         },
         title: 'Discourse',
         debugShowCheckedModeBanner: false,
