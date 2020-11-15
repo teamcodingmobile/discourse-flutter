@@ -1,5 +1,25 @@
 import 'package:flutter/material.dart';
 
+import 'dart:async';
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+
+Future<http.Response> createForgot(String title) {
+  return http.post(
+    'https://mdiscourse.keepcoding.io//session/forgot_password',
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+      'Api-key':
+          '699667f923e65fac39b632b0d9b2db0d9ee40f9da15480ad5a4bcb3c1b095b7a',
+      'Api-Username': 'gestionarlaweb',
+    },
+    body: jsonEncode(<String, String>{
+      'login': 'gestionarlaweb',
+    }),
+  );
+}
+
 class ForgotPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -20,39 +40,38 @@ class ForgotPage extends StatelessWidget {
           Padding(
             padding:
                 const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
-            child: _myInput(),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _myInput() {
-    return Container(
-      child: Column(
-        children: [
-          Text(
-            'Recover Password',
-            style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-          ),
-          TextField(
-            autofocus: true,
-            textCapitalization: TextCapitalization.sentences,
-            decoration: InputDecoration(hintText: 'Username'),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 100.0),
             child: Container(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  RaisedButton(
-                    child: Text(
-                      "Send email",
-                      style: TextStyle(color: Colors.white),
+                  Text(
+                    'Recover Password',
+                    style:
+                        TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+                  ),
+                  TextField(
+                    // controller de textField
+
+                    autofocus: true,
+                    textCapitalization: TextCapitalization.none,
+                    decoration: InputDecoration(hintText: 'Username'),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 100.0),
+                    child: Container(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          RaisedButton(
+                            child: Text(
+                              "Send email",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            color: Colors.blue,
+                            onPressed: () => {},
+                          ),
+                        ],
+                      ),
                     ),
-                    color: Colors.blue,
-                    onPressed: () => {},
                   ),
                 ],
               ),

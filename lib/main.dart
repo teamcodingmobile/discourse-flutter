@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
           'login': (_) => LoginPage(),
           'forgot': (_) => ForgotPage(),
           'createAccount': (_) => CreateAccountPage(),
-          //'tabspage': (_) => TabsPage(),
+          'tabspage': (_) => TabsPage(),
           'tab1page': (_) => Tab1Page(),
           'createTopicPage': (_) => CreateTopicPage(),
           'detailTopicPage': (_) => DetailTopicPage()
@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: myTheme,
         home: Scaffold(
-          body: TabsPage(),
+          body: HomePage(), //HomePage(), //TabsPage(),
         ),
       ),
     );

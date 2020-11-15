@@ -111,23 +111,6 @@ class _CreateTopicPageState extends State<CreateTopicPage> {
       ),
     );
   }
-/*
-  Widget _myInput() {
-    return TextField(
-      autofocus: true,
-      textCapitalization: TextCapitalization.sentences,
-      decoration: InputDecoration(hintText: 'Write your new topic'),
-      onChanged: (value) {
-        setState(() {
-          _myTopicString = value;
-          print(_myTopicString);
-        });
-      },
-      onSubmitted: (value) => Navigator.pop(context),
-    );
-  }
-*/
-
 }
 
 class _TextTitleTopicAndroid extends StatelessWidget {
