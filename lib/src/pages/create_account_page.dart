@@ -62,7 +62,6 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
             padding: const EdgeInsets.all(12.0),
             child: (_futureNewUserResponse == null)
                 ? Column(
-                    // mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
                         'Create your account',
