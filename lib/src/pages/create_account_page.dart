@@ -8,12 +8,9 @@ import 'dart:convert';
 Future<NewUserResponse> createUser(
     String name, email, password, username) async {
   final http.Response response = await http.post(
-    'https://jsonplaceholder.typicode.com/albums',
+    'https://mdiscourse.keepcoding.io/users.json',
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
-      // 'Api-key':
-      //     '699667f923e65fac39b632b0d9b2db0d9ee40f9da15480ad5a4bcb3c1b095b7a',
-      // 'Api-Username': 'gestionarlaweb',
     },
     body: jsonEncode(<String, String>{
       'name': name,
@@ -22,11 +19,11 @@ Future<NewUserResponse> createUser(
       'username': username,
     }),
   );
-  print(response.body);
-  if (response.statusCode == 201) {
+
+  if (response.statusCode == 200) {
     return NewUserResponse.fromJson(jsonDecode(response.body));
   } else {
-    throw Exception('Failed to load album');
+    throw Exception('Failed to load New User');
   }
 }
 
@@ -97,6 +94,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                         padding: const EdgeInsets.all(8.0),
                         child: TextField(
                           controller: _controllerPassword,
+                          obscureText: true,
                           autofocus: true,
                           decoration: InputDecoration(hintText: 'password'),
                         ),
