@@ -16,7 +16,6 @@ class LoginPage extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          //BarDesing(),
           Padding(
             padding:
                 const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
@@ -27,15 +26,13 @@ class LoginPage extends StatelessWidget {
                   style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
                 ),
                 TextField(
-                  // _controller,
+                  //_controller,
                   autofocus: true,
-                  //textCapitalization: TextCapitalization.sentences,
                   decoration: InputDecoration(hintText: 'Username'),
                 ),
                 TextField(
                   autofocus: true,
                   obscureText: true,
-                  //textCapitalization: TextCapitalization.sentences,
                   decoration: InputDecoration(hintText: 'Password'),
                 ),
                 RaisedButton(

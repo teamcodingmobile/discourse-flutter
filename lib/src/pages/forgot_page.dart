@@ -5,9 +5,9 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-Future<http.Response> createForgot(String title) {
+Future<http.Response> createForgot(String user) {
   return http.post(
-    'https://mdiscourse.keepcoding.io//session/forgot_password',
+    'https://mdiscourse.keepcoding.io/session/forgot_password',
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'Api-key':
@@ -15,12 +15,15 @@ Future<http.Response> createForgot(String title) {
       'Api-Username': 'gestionarlaweb',
     },
     body: jsonEncode(<String, String>{
-      'login': 'gestionarlaweb',
+      'login': user,
     }),
   );
 }
 
 class ForgotPage extends StatelessWidget {
+  // Controller
+  final TextEditingController userController = TextEditingController();
+  // Controller
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,6 +53,7 @@ class ForgotPage extends StatelessWidget {
                   ),
                   TextField(
                     // controller de textField
+                    controller: userController,
 
                     autofocus: true,
                     textCapitalization: TextCapitalization.none,
@@ -67,7 +71,9 @@ class ForgotPage extends StatelessWidget {
                               style: TextStyle(color: Colors.white),
                             ),
                             color: Colors.blue,
-                            onPressed: () => {},
+                            onPressed: () => {
+                              createForgot(userController.text),
+                            },
                           ),
                         ],
                       ),

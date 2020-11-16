@@ -76,7 +76,9 @@ class HomePage extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(6.0),
                       side: BorderSide(color: Colors.blue)),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, 'createAccount');
+                  },
                   color: Colors.blue,
                   textColor: Colors.white,
                   child: Padding(
