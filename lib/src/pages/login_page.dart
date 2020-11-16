@@ -43,6 +43,7 @@ class LoginPage extends StatelessWidget {
                   textColor: Colors.white,
                   child: Text('Login'),
                   onPressed: () {
+                    Navigator.pushNamed(context, 'tabspage');
                     // setState(
                     //    () {
                     //      _futureTopic = createTopic(_controller.text);

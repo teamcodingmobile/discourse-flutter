@@ -6,7 +6,7 @@ String sized;
 
 class ListTopics extends StatelessWidget {
   final List<Topic> topics;
-  final List<Users> users;
+  final List<Users> users; // Para el avatar
 
   const ListTopics(this.topics, this.users);
 
