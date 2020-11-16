@@ -73,6 +73,7 @@ class ForgotPage extends StatelessWidget {
                             color: Colors.blue,
                             onPressed: () => {
                               createForgot(userController.text),
+                              Navigator.pushNamed(context, 'login'),
                             },
                           ),
                         ],
