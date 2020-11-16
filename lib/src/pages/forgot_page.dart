@@ -10,9 +10,9 @@ Future<http.Response> createForgot(String user) {
     'https://mdiscourse.keepcoding.io/session/forgot_password',
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
-      'Api-key':
-          '699667f923e65fac39b632b0d9b2db0d9ee40f9da15480ad5a4bcb3c1b095b7a',
-      'Api-Username': 'gestionarlaweb',
+      //    'Api-key':
+      //        '699667f923e65fac39b632b0d9b2db0d9ee40f9da15480ad5a4bcb3c1b095b7a',
+      //    'Api-Username': 'gestionarlaweb',
     },
     body: jsonEncode(<String, String>{
       'login': user,
