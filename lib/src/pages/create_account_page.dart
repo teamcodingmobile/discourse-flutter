@@ -34,11 +34,8 @@ class CreateAccountPage extends StatefulWidget {
 
 class _CreateAccountPageState extends State<CreateAccountPage> {
   final TextEditingController _controllerName = TextEditingController();
-
   final TextEditingController _controllerEmail = TextEditingController();
-
   final TextEditingController _controllerPassword = TextEditingController();
-
   final TextEditingController _controllerUser = TextEditingController();
 
   Future<NewUserResponse> _futureNewUserResponse;

@@ -75,14 +75,12 @@ class _LoginPageState extends State<LoginPage> {
                         onPressed: () => {
                           setState(() {
                             Navigator.pushNamed(context, 'tabspage');
-                            //_futureUserResponse =
-                            //    loginUser(userController.text);
                           }),
                         },
                       ),
                       Container(
                         child: Padding(
-                          padding: const EdgeInsets.only(left: 100.0, top: 320),
+                          padding: const EdgeInsets.only(left: 110.0, top: 120),
                           child: Column(
                             children: [
                               Row(

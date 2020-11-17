@@ -3,12 +3,14 @@ import 'dart:io';
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:discourse/src/models/create_topic_model.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:discourse/src/widgets/bar_desing.dart';
 import 'package:flutter/material.dart';
 
-Future<PostResponse> createTopic(String title) async {
+Future<CreateTopictResponse> createTopic(String title) async {
   final http.Response response = await http.post(
     'https://mdiscourse.keepcoding.io/posts.json',
     headers: <String, String>{
@@ -24,22 +26,10 @@ Future<PostResponse> createTopic(String title) async {
   );
   print(response.statusCode);
   if (response.statusCode == 200) {
-    return PostResponse.fromJson(jsonDecode(response.body));
+    return CreateTopictResponse.fromJson(jsonDecode(response.body));
   } else {
     print(response.body);
     throw Exception('Failed to create Topic.');
-  }
-}
-
-class PostResponse {
-  final String title;
-
-  PostResponse({this.title});
-
-  factory PostResponse.fromJson(Map<String, dynamic> json) {
-    return PostResponse(
-      title: json['title'],
-    );
   }
 }
 
@@ -51,7 +41,7 @@ class CreateTopicPage extends StatefulWidget {
 class _CreateTopicPageState extends State<CreateTopicPage> {
   // Controller
   final TextEditingController _controller = TextEditingController();
-  Future<PostResponse> _futureTopic;
+  Future<CreateTopictResponse> _futureTopic;
 
   @override
   Widget build(BuildContext context) {
@@ -71,11 +61,8 @@ class _CreateTopicPageState extends State<CreateTopicPage> {
           Padding(
             padding:
                 const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
-            //child: _myInput(),
-
             child: (_futureTopic == null)
                 ? Column(
-                    //mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       TextField(
                         controller: _controller,
@@ -85,21 +72,21 @@ class _CreateTopicPageState extends State<CreateTopicPage> {
                         color: Colors.blue,
                         textColor: Colors.white,
                         child: Text('Create'),
-                        onPressed: () {
+                        onPressed: () => {
                           setState(
                             () {
                               _futureTopic = createTopic(_controller.text);
                             },
-                          );
+                          ),
                         },
                       ),
                     ],
                   )
-                : FutureBuilder<PostResponse>(
+                : FutureBuilder<CreateTopictResponse>(
                     future: _futureTopic,
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
-                        return Text(snapshot.data.title);
+                        return _Dialog();
                       } else if (snapshot.hasError) {
                         return Text("${snapshot.error}");
                       }
@@ -135,5 +122,12 @@ class _TextTitleTopiciOs extends StatelessWidget {
         style: TextStyle(color: Colors.black),
       ),
     );
+  }
+}
+
+class _Dialog extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoAlertDialog(title: Text('Register new topic success !'));
   }
 }
