@@ -97,7 +97,6 @@ class _BottomBar extends StatelessWidget {
                               Container(
                                 child: Text(
                                   '${topic.postsCount}',
-                                  // style: TextStyle(fontFamily: 'AvenirRegular')
                                 ),
                               ),
                               Container(
@@ -119,7 +118,6 @@ class _BottomBar extends StatelessWidget {
                               Container(
                                 child: Text(
                                   '${topic.postsCount}',
-                                  //style: TextStyle(fontFamily: 'AvenirBold')
                                 ),
                               ),
                               Container(
