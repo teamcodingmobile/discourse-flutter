@@ -101,9 +101,8 @@ class _BottomBar extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                child: Icon(
-                                  Icons.format_list_numbered,
-                                  size: 20.0,
+                                child: ImageIcon(
+                                  AssetImage('assets/icons/eye.png'),
                                 ),
                               ),
                             ],
@@ -125,7 +124,7 @@ class _BottomBar extends StatelessWidget {
                               ),
                               Container(
                                 child: Icon(
-                                  Icons.view_list,
+                                  Icons.announcement,
                                   size: 20.0,
                                 ),
                               ),
@@ -145,7 +144,7 @@ class _BottomBar extends StatelessWidget {
                               ),
                               Container(
                                 child: Icon(
-                                  Icons.view_list,
+                                  Icons.reply,
                                   size: 20.0,
                                 ),
                               ),
@@ -181,7 +180,6 @@ class _Title extends StatelessWidget {
             Container(
               child: Text(
                 '${topic.title}',
-                //style: TextStyle(fontFamily: 'AvenirBold')
               ),
             ),
           ],
@@ -202,7 +200,6 @@ class _UserName extends StatelessWidget {
       padding: const EdgeInsets.only(left: 4.0),
       child: Text(
         '${topic.lastPosterUsername}',
-        //style: TextStyle(fontFamily: 'AvenirBold')
       ),
     );
   }
@@ -245,7 +242,7 @@ class _Avatar extends StatelessWidget {
     return Container(
         //child: (user.user.avatarTemplate != null)
         // child: (this.user.user.username == this.topic.lastPosterUsername)
-        child: (this.user.user.username != this.topic.lastPosterUsername)
+        child: (user.user.avatarTemplate != null)
             ? CircleAvatar(
                 backgroundImage: NetworkImage(
                     'https://mdiscourse.keepcoding.io/${user.user.avatarTemplate.replaceAll(find, replaceWith)}'), // [index]

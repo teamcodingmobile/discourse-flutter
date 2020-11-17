@@ -270,9 +270,8 @@ class _BottomBar extends StatelessWidget {
                                     ),
                               ),
                               Container(
-                                child: Icon(
-                                  Icons.format_list_numbered,
-                                  size: 20.0,
+                                child: ImageIcon(
+                                  AssetImage('assets/icons/eye.png'),
                                 ),
                               ),
                             ],
@@ -294,7 +293,7 @@ class _BottomBar extends StatelessWidget {
                               ),
                               Container(
                                 child: Icon(
-                                  Icons.view_list,
+                                  Icons.announcement,
                                   size: 20.0,
                                 ),
                               ),
@@ -317,7 +316,7 @@ class _BottomBar extends StatelessWidget {
                               ),
                               Container(
                                 child: Icon(
-                                  Icons.view_list,
+                                  Icons.reply,
                                   size: 20.0,
                                 ),
                               ),
