@@ -12,11 +12,14 @@ class Tab3Page extends StatelessWidget {
             children: [
               Container(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 50.0),
                   child: ListTile(
-                    title:
-                        Text('Nombre Usuario', style: TextStyle(fontSize: 20)),
-                    subtitle: Text('email'),
+                    title: Padding(
+                      padding: const EdgeInsets.only(top: 15.0),
+                      child:
+                          Text('David Rabassa', style: TextStyle(fontSize: 20)),
+                    ),
+                    subtitle: Text('@gestionarlaweb'),
                   ),
                 ),
               ),
@@ -38,8 +41,13 @@ class Tab3Page extends StatelessWidget {
                             AssetImage('assets/img/no-image.png'), // [index]
                         radius: 28,
                       ),
-                      title: Text('lo que sea'),
-                      subtitle: Text(' lo otro'),
+                      title: Text('David Rabassa'),
+                      subtitle: Text('4 days ago'),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child:
+                          Text('3 Simple Ways To Save A Bruch Of Money When'),
                     ),
                     _BottomBar(),
                     ListTile(
@@ -48,8 +56,13 @@ class Tab3Page extends StatelessWidget {
                             AssetImage('assets/img/no-image.png'), // [index]
                         radius: 28,
                       ),
-                      title: Text('lo que sea'),
-                      subtitle: Text(' lo otro'),
+                      title: Text('David Rabassa'),
+                      subtitle: Text('6 days ago'),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Text(
+                          'Be careful what you believe because that is what you will experience'),
                     ),
                     _BottomBar(),
                   ],
@@ -96,11 +109,14 @@ class _BottomBarSimple extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 8.0),
             child: Column(
               children: [
-                Container(
-                  child: CircleAvatar(
-                    backgroundImage:
-                        AssetImage('assets/img/no-image.png'), // [index]
-                    radius: 60,
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 20.0),
+                  child: Container(
+                    child: CircleAvatar(
+                      backgroundImage:
+                          AssetImage('assets/img/no-image.png'), // [index]
+                      radius: 60,
+                    ),
                   ),
                 ),
                 Row(
