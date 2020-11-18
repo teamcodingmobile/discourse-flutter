@@ -7,7 +7,7 @@ import 'dart:convert';
 
 Future<LoginResponse> loginUser(String username) async {
   final http.Response response = await http.post(
-    'https://mdiscourse.keepcoding.io/users/gestionarlaweb.json',
+    'https://mdiscourse.keepcoding.io/users/$username.json',
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -39,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
 
   _submit() {
     final bool isValid = _formKey.currentState.validate();
-    if (isValid) {
+    if (isValid && _username == 'gestionarlaweb' || _username == 'admin') {
       setState(() {
         Navigator.pushNamed(context, 'tabspage');
       });
