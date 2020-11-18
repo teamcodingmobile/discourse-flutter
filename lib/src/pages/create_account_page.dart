@@ -40,6 +40,55 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
 
   Future<NewUserResponse> _futureNewUserResponse;
 
+  GlobalKey<FormState> _formKey = GlobalKey();
+  // ignore: unused_field
+  String _username = '', _name = '', _email = '', _password = '';
+
+  _submit() {
+    final bool isValid = _formKey.currentState.validate();
+    if (isValid) {
+      setState(() {
+        _futureNewUserResponse = createUser(
+            _controllerName.text,
+            _controllerEmail.text,
+            _controllerPassword.text,
+            _controllerUser.text);
+      });
+    }
+  }
+
+  String _validateUsername(String username) {
+    if (username.isNotEmpty && username.length > 3) {
+      _username = username;
+      return null;
+    }
+    return "invalid username";
+  }
+
+  String _validateName(String name) {
+    if (name.isNotEmpty && name.length > 3) {
+      name = name;
+      return null;
+    }
+    return "invalid name";
+  }
+
+  String _validateEmail(String email) {
+    if (email.isNotEmpty && email.contains("@")) {
+      _email = email;
+      return null;
+    }
+    return "invalid email";
+  }
+
+  String _validatePassword(String password) {
+    if (password.isNotEmpty && password.length > 8) {
+      _password = password;
+      return null;
+    }
+    return "invalid password";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,61 +107,68 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
           Container(
             padding: const EdgeInsets.all(12.0),
             child: (_futureNewUserResponse == null)
-                ? Column(
-                    children: <Widget>[
-                      Text(
-                        'Create your account',
-                        style: TextStyle(
-                            fontSize: 24.0, fontWeight: FontWeight.bold),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextField(
-                          controller: _controllerUser,
-                          decoration: InputDecoration(hintText: 'username'),
+                ? Form(
+                    key: _formKey, // Para las validaciones
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          'Create your account',
+                          style: TextStyle(
+                              fontSize: 24.0, fontWeight: FontWeight.bold),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextField(
-                          controller: _controllerName,
-                          decoration: InputDecoration(hintText: 'name'),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextFormField(
+                            controller: _controllerUser,
+                            decoration: InputDecoration(
+                                hintText: 'your username',
+                                labelText: 'username'),
+                            validator: _validateUsername,
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextField(
-                          controller: _controllerEmail,
-                          decoration: InputDecoration(hintText: 'email'),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextFormField(
+                            controller: _controllerName,
+                            decoration: InputDecoration(
+                                hintText: 'your firts name', labelText: 'name'),
+                            validator: _validateName,
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextField(
-                          controller: _controllerPassword,
-                          obscureText: true,
-                          autofocus: true,
-                          decoration: InputDecoration(hintText: 'password'),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextFormField(
+                            controller: _controllerEmail,
+                            decoration: InputDecoration(
+                                hintText: 'email',
+                                labelText: 'exemple@gmail.com'),
+                            validator: _validateEmail,
+                          ),
                         ),
-                      ),
-                      RaisedButton(
-                        child: Text(
-                          "Send email",
-                          style: TextStyle(color: Colors.white),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextFormField(
+                            controller: _controllerPassword,
+                            obscureText: true,
+                            autofocus: true,
+                            decoration: InputDecoration(
+                                hintText: 'password',
+                                labelText: 'minium 8 digits'),
+                            validator: _validatePassword,
+                          ),
                         ),
-                        color: Colors.blue,
-                        onPressed: () => {
-                          setState(() {
-                            _futureNewUserResponse = createUser(
-                                _controllerName.text,
-                                _controllerEmail.text,
-                                _controllerPassword.text,
-                                _controllerUser.text);
-                          }),
-                          //Navigator.pushNamed(context, 'login'),
-                        },
-                      ),
-                    ],
+                        RaisedButton(
+                          child: Text(
+                            "Send",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          color: Colors.blue,
+                          onPressed: () => {
+                            _submit(), // Para las validaciones
+                          },
+                        ),
+                      ],
+                    ),
                   )
                 : FutureBuilder<NewUserResponse>(
                     future: _futureNewUserResponse,
