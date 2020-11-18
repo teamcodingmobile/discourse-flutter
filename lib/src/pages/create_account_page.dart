@@ -105,84 +105,87 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
       ),
       body: Stack(
         children: [
-          Container(
-            padding: const EdgeInsets.all(12.0),
-            child: (_futureNewUserResponse == null)
-                ? Form(
-                    key: _formKey, // Para las validaciones
-                    child: Column(
-                      children: <Widget>[
-                        Text(
-                          'Create your account',
-                          style: TextStyle(
-                              fontSize: 24.0, fontWeight: FontWeight.bold),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextFormField(
-                            controller: _controllerUser,
-                            decoration: InputDecoration(
-                                hintText: 'your username',
-                                labelText: 'username'),
-                            validator: _validateUsername,
+          SingleChildScrollView(
+            child: Container(
+              padding: const EdgeInsets.all(12.0),
+              child: (_futureNewUserResponse == null)
+                  ? Form(
+                      key: _formKey, // Para las validaciones
+                      child: Column(
+                        children: <Widget>[
+                          Text(
+                            'Create your account',
+                            style: TextStyle(
+                                fontSize: 24.0, fontWeight: FontWeight.bold),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextFormField(
-                            controller: _controllerName,
-                            decoration: InputDecoration(
-                                hintText: 'your firts name', labelText: 'name'),
-                            validator: _validateName,
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextFormField(
+                              controller: _controllerUser,
+                              decoration: InputDecoration(
+                                  hintText: 'your username',
+                                  labelText: 'username'),
+                              validator: _validateUsername,
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextFormField(
-                            controller: _controllerEmail,
-                            decoration: InputDecoration(
-                                hintText: 'email',
-                                labelText: 'exemple@gmail.com'),
-                            validator: _validateEmail,
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextFormField(
+                              controller: _controllerName,
+                              decoration: InputDecoration(
+                                  hintText: 'your firts name',
+                                  labelText: 'name'),
+                              validator: _validateName,
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextFormField(
-                            controller: _controllerPassword,
-                            obscureText: true,
-                            autofocus: true,
-                            decoration: InputDecoration(
-                                hintText: 'password',
-                                labelText: 'minium 8 digits'),
-                            validator: _validatePassword,
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextFormField(
+                              controller: _controllerEmail,
+                              decoration: InputDecoration(
+                                  hintText: 'email',
+                                  labelText: 'exemple@gmail.com'),
+                              validator: _validateEmail,
+                            ),
                           ),
-                        ),
-                        RaisedButton(
-                          child: Text(
-                            "Send",
-                            style: TextStyle(color: Colors.white),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextFormField(
+                              controller: _controllerPassword,
+                              obscureText: true,
+                              autofocus: true,
+                              decoration: InputDecoration(
+                                  hintText: 'password',
+                                  labelText: 'minium 8 digits'),
+                              validator: _validatePassword,
+                            ),
                           ),
-                          color: Colors.blue,
-                          onPressed: () => {
-                            _submit(), // Para las validaciones
-                          },
-                        ),
-                      ],
-                    ),
-                  )
-                : FutureBuilder<NewUserResponse>(
-                    future: _futureNewUserResponse,
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return _Dialog();
-                      } else if (snapshot.hasError) {
-                        return Text("${snapshot.error}");
-                      }
+                          RaisedButton(
+                            child: Text(
+                              "Send",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            color: Colors.blue,
+                            onPressed: () => {
+                              _submit(), // Para las validaciones
+                            },
+                          ),
+                        ],
+                      ),
+                    )
+                  : FutureBuilder<NewUserResponse>(
+                      future: _futureNewUserResponse,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return _Dialog();
+                        } else if (snapshot.hasError) {
+                          return Text("${snapshot.error}");
+                        }
 
-                      return CircularProgressIndicator();
-                    },
-                  ),
+                        return CircularProgressIndicator();
+                      },
+                    ),
+            ),
           ),
         ],
       ),

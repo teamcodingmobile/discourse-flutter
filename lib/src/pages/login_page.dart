@@ -114,33 +114,21 @@ class _LoginPageState extends State<LoginPage> {
                             _submit(),
                           },
                         ),
-                        Container(
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.only(left: 110.0, top: 120),
-                            child: Column(
+                        Padding(
+                          padding: const EdgeInsets.all(30.0),
+                          child: Container(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Row(
-                                  children: [
-                                    Container(
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 8.0),
-                                        child: Container(
-                                          child: GestureDetector(
-                                            onTap: () => Navigator.pushNamed(
-                                                context, 'forgot'),
-                                            child: Text(
-                                              'Forgot your password ?',
-                                              style: TextStyle(
-                                                  fontSize: 14.0,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                                GestureDetector(
+                                  onTap: () =>
+                                      Navigator.pushNamed(context, 'forgot'),
+                                  child: Text(
+                                    'Forgot your password ?',
+                                    style: TextStyle(
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ),
                               ],
                             ),

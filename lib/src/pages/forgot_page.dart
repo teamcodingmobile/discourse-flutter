@@ -39,6 +39,27 @@ class _ForgotPageState extends State<ForgotPage> {
 
   Future<ResetResponse> _futureResetResponse;
 
+  GlobalKey<FormState> _formKey = GlobalKey();
+  // ignore: unused_field
+  String _username = '';
+
+  _submit() {
+    final bool isValid = _formKey.currentState.validate();
+    if (isValid && _username == 'gestionarlaweb' || _username == 'admin') {
+      setState(() {
+        _futureResetResponse = resetPassword(userController.text);
+      });
+    }
+  }
+
+  String _validateUsername(String username) {
+    if (username.isNotEmpty && username.length > 3) {
+      _username = username;
+      return null;
+    }
+    return "invalid username";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,62 +75,69 @@ class _ForgotPageState extends State<ForgotPage> {
       ),
       body: Stack(
         children: [
-          //BarDesing(),
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
+          SingleChildScrollView(
             child: Container(
-              child: (_futureResetResponse == null)
-                  ? Column(
-                      children: [
-                        Text(
-                          'Recover Password',
-                          style: TextStyle(
-                              fontSize: 24.0, fontWeight: FontWeight.bold),
-                        ),
-                        TextField(
-                          // controller de textField
-                          controller: userController,
-
-                          autofocus: true,
-                          textCapitalization: TextCapitalization.none,
-                          decoration: InputDecoration(hintText: 'Username'),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 100.0),
-                          child: Container(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                RaisedButton(
-                                  child: Text(
-                                    "Send email",
-                                    style: TextStyle(color: Colors.white),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 10.0, vertical: 20.0),
+                child: Container(
+                  child: (_futureResetResponse == null)
+                      ? Form(
+                          key: _formKey,
+                          child: Column(
+                            children: <Widget>[
+                              Text(
+                                'Recover Password',
+                                style: TextStyle(
+                                    fontSize: 24.0,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              TextFormField(
+                                controller: userController,
+                                autofocus: true,
+                                textCapitalization: TextCapitalization.none,
+                                decoration: InputDecoration(
+                                    hintText: 'Username',
+                                    labelText: 'username'),
+                                validator: _validateUsername,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 100.0),
+                                child: Container(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      RaisedButton(
+                                        child: Text(
+                                          "Send email",
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                        color: Colors.blue,
+                                        onPressed: () => {
+                                          _submit(),
+                                        },
+                                      ),
+                                    ],
                                   ),
-                                  color: Colors.blue,
-                                  onPressed: () => {
-                                    _futureResetResponse =
-                                        resetPassword(userController.text),
-                                  },
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
-                    )
-                  : FutureBuilder<ResetResponse>(
-                      future: _futureResetResponse,
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData) {
-                          return _Dialog();
-                        } else if (snapshot.hasError) {
-                          return Text("${snapshot.error}");
-                        }
+                        )
+                      : FutureBuilder<ResetResponse>(
+                          future: _futureResetResponse,
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              return _Dialog();
+                            } else if (snapshot.hasError) {
+                              return Text("${snapshot.error}");
+                            }
 
-                        return CircularProgressIndicator();
-                      },
-                    ),
+                            return CircularProgressIndicator();
+                          },
+                        ),
+                ),
+              ),
             ),
           ),
         ],
