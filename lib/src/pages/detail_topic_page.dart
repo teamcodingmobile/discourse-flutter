@@ -201,9 +201,10 @@ class _Title extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Container(
-              child: Text(
-                '${topic.title}',
-                //style: TextStyle(fontFamily: 'AvenirBold')
+              child: Expanded(
+                child: Text(
+                  '${topic.title}',
+                ),
               ),
             ),
           ],
@@ -224,7 +225,6 @@ class _UserName extends StatelessWidget {
       padding: const EdgeInsets.only(left: 4.0),
       child: Text(
         '${topic.lastPosterUsername}',
-        //style: TextStyle(fontFamily: 'AvenirBold')
       ),
     );
   }

@@ -175,7 +175,7 @@ class _Title extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Container(
+            Expanded(
               child: Text(
                 '${topic.title}',
               ),
