@@ -43,7 +43,7 @@ class HomePage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Cicilized discussion',
+                        'Civilized discussion',
                         style: TextStyle(
                           fontSize: 22.0,
                         ),
