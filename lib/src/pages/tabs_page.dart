@@ -46,7 +46,6 @@ class _Pages extends StatelessWidget {
       controller: navigationModel.pageController,
       physics: NeverScrollableScrollPhysics(),
       children: <Widget>[
-        //HomePage(),
         Tab1Page(),
         Tab2Page(),
         Tab3Page(),

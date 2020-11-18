@@ -1,3 +1,5 @@
+import 'package:discourse/src/global/environment.dart';
+import 'package:discourse/src/theme/color_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:discourse/src/models/users_models.dart';
 import 'package:http/http.dart' as http;
@@ -9,16 +11,15 @@ User postFromJson(String str) {
   return User.fromJson(jsonData);
 }
 
-String url = 'https://mdiscourse.keepcoding.io';
+String url = '${Environment.apiUrl}';
 
 Future<User> getPost() async {
   final response = await http.get(
     '$url/users/gestionarlaweb.json',
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
-      'Api-key':
-          '699667f923e65fac39b632b0d9b2db0d9ee40f9da15480ad5a4bcb3c1b095b7a',
-      'Api-Username': 'gestionarlaweb',
+      'Api-key': '${Environment.apiKey}',
+      'Api-Username': '${Environment.userName}',
     },
   );
 
@@ -29,17 +30,45 @@ Future<User> getPost() async {
   }
 }
 
-class Tab3Page extends StatelessWidget {
+class Tab3Page extends StatefulWidget {
+  @override
+  _Tab3PageState createState() => _Tab3PageState();
+}
+
+class _Tab3PageState extends State<Tab3Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(100),
         child: AppBar(
-          flexibleSpace: _ColorAppBar(),
+          flexibleSpace: ColorAppBar(),
           title: Column(
             children: [
-              _DetailAppBar(),
+              FutureBuilder<User>(
+                future: getPost(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done)
+                    return Container(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                        child: ListTile(
+                          title: Padding(
+                            padding: const EdgeInsets.only(top: 15.0),
+                            child: Text('David', // {snapshot.data.name}
+                                style: TextStyle(fontSize: 20)),
+                          ),
+                          subtitle: Text(
+                              '@gestionarlaweb'), // @${snapshot.data.username}
+                        ),
+                      ),
+                    );
+                  else if (snapshot.hasError) {
+                    return Text("${snapshot.error}");
+                  }
+                  return CircularProgressIndicator();
+                },
+              ),
             ],
           ),
         ),
@@ -58,53 +87,6 @@ class Tab3Page extends StatelessWidget {
             ],
           ),
         ],
-      ),
-    );
-  }
-}
-
-// API
-class _DetailAppBar extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder<User>(
-        future: getPost(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done)
-            return Container(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 50.0),
-                child: ListTile(
-                  title: Padding(
-                    padding: const EdgeInsets.only(top: 15.0),
-                    child: Text('${snapshot.data.name}',
-                        style: TextStyle(fontSize: 20)),
-                  ),
-                  subtitle: Text('@${snapshot.data.username}'),
-                ),
-              ),
-            );
-          else if (snapshot.hasError) {
-            return Text("${snapshot.error}");
-          }
-          return CircularProgressIndicator();
-        });
-  }
-}
-
-class _ColorAppBar extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: <Color>[
-            Color.fromRGBO(255, 192, 203, 1),
-            Color.fromRGBO(242, 232, 143, 1),
-          ],
-        ),
       ),
     );
   }
@@ -172,7 +154,7 @@ class _TreeColumn extends StatelessWidget {
                     child: Row(
                       children: <Widget>[
                         Container(
-                          child: Text('Topics'
+                          child: Text('53'
                               // '${topic.postsCount}',
                               ),
                         ),
@@ -226,7 +208,7 @@ class _TwoColumn extends StatelessWidget {
                     child: Row(
                       children: <Widget>[
                         Container(
-                          child: Text('Topics'
+                          child: Text('12'
                               // '${topic.postsCount}',
                               ),
                         ),
@@ -278,7 +260,7 @@ class _OneColumn extends StatelessWidget {
                     child: Row(
                       children: <Widget>[
                         Container(
-                          child: Text('Topics'
+                          child: Text('false'
                               // '${topic.postsCount}',
                               ),
                         ),

@@ -1,3 +1,4 @@
+import 'package:discourse/src/global/environment.dart';
 import 'package:discourse/src/models/reset_password_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,12 +10,11 @@ import 'package:http/http.dart' as http;
 
 Future<ResetResponse> resetPassword(String login) async {
   final http.Response response = await http.post(
-    'https://mdiscourse.keepcoding.io/session/forgot_password',
+    '${Environment.apiUrl}/session/forgot_password',
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
-      'Api-key':
-          '699667f923e65fac39b632b0d9b2db0d9ee40f9da15480ad5a4bcb3c1b095b7a',
-      'Api-Username': 'gestionarlaweb',
+      'Api-key': '${Environment.apiKey}',
+      'Api-Username': '${Environment.userName}',
     },
     body: jsonEncode(<String, String>{
       'login': login,

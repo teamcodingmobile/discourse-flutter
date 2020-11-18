@@ -1,3 +1,4 @@
+import 'package:discourse/src/global/environment.dart';
 import 'package:discourse/src/models/login_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,7 @@ import 'dart:convert';
 
 Future<LoginResponse> loginUser(String username) async {
   final http.Response response = await http.post(
-    'https://mdiscourse.keepcoding.io/users/gestionarlaweb.json',
+    '${Environment.apiUrl}/users/$username.json',
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -33,6 +34,35 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<LoginResponse> _futureUserResponse;
 
+  GlobalKey<FormState> _formKey = GlobalKey();
+  // ignore: unused_field
+  String _username = '', _password = '';
+
+  _submit() {
+    final bool isValid = _formKey.currentState.validate();
+    if (isValid && _username == 'gestionarlaweb' || _username == 'admin') {
+      setState(() {
+        Navigator.pushNamed(context, 'tabspage');
+      });
+    }
+  }
+
+  String _validateUsername(String username) {
+    if (username.isNotEmpty && username.length > 3) {
+      _username = username;
+      return null;
+    }
+    return "invalid username";
+  }
+
+  String _validatePassword(String password) {
+    if (password.isNotEmpty && password.length > 8) {
+      _password = password;
+      return null;
+    }
+    return "invalid password";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,64 +81,73 @@ class _LoginPageState extends State<LoginPage> {
           Container(
             padding: const EdgeInsets.all(12.0),
             child: (_futureUserResponse == null)
-                ? Column(
-                    children: <Widget>[
-                      Text(
-                        'Login on Discourse',
-                        style: TextStyle(
-                            fontSize: 24.0, fontWeight: FontWeight.bold),
-                      ),
-                      TextField(
-                        controller: userController,
-                        autofocus: true,
-                        decoration: InputDecoration(hintText: 'Username'),
-                      ),
-                      TextField(
-                        autofocus: true,
-                        obscureText: true,
-                        decoration: InputDecoration(hintText: 'Password'),
-                      ),
-                      RaisedButton(
-                        color: Colors.blue,
-                        textColor: Colors.white,
-                        child: Text('Login'),
-                        onPressed: () => {
-                          setState(() {
-                            Navigator.pushNamed(context, 'tabspage');
-                          }),
-                        },
-                      ),
-                      Container(
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 110.0, top: 120),
-                          child: Column(
-                            children: [
-                              Row(
-                                children: [
-                                  Container(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 8.0),
-                                      child: Container(
-                                        child: GestureDetector(
-                                          onTap: () => Navigator.pushNamed(
-                                              context, 'forgot'),
-                                          child: Text(
-                                            'Forgot your password ?',
-                                            style: TextStyle(
-                                                fontSize: 14.0,
-                                                fontWeight: FontWeight.bold),
+                ? Form(
+                    key: _formKey,
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          'Login on Discourse',
+                          style: TextStyle(
+                              fontSize: 24.0, fontWeight: FontWeight.bold),
+                        ),
+                        TextFormField(
+                          controller: userController,
+                          autofocus: true,
+                          decoration: InputDecoration(
+                              hintText: 'Username', labelText: 'username'),
+                          validator: _validateUsername,
+                        ),
+                        TextFormField(
+                          //controller: passController,
+                          autofocus: true,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                              hintText: 'password',
+                              labelText: 'minium 8 digits'),
+                          validator: _validatePassword,
+                        ),
+                        RaisedButton(
+                          color: Colors.blue,
+                          textColor: Colors.white,
+                          child: Text('Login'),
+                          onPressed: () => {
+                            _submit(),
+                          },
+                        ),
+                        Container(
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.only(left: 110.0, top: 120),
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Container(
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 8.0),
+                                        child: Container(
+                                          child: GestureDetector(
+                                            onTap: () => Navigator.pushNamed(
+                                                context, 'forgot'),
+                                            child: Text(
+                                              'Forgot your password ?',
+                                              style: TextStyle(
+                                                  fontSize: 14.0,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   )
                 : FutureBuilder<LoginResponse>(
                     future: _futureUserResponse,

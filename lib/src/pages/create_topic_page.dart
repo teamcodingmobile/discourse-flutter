@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:discourse/src/global/environment.dart';
 import 'package:discourse/src/models/create_topic_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
@@ -12,12 +13,11 @@ import 'package:flutter/material.dart';
 
 Future<CreateTopictResponse> createTopic(String title) async {
   final http.Response response = await http.post(
-    'https://mdiscourse.keepcoding.io/posts.json',
+    '${Environment.apiUrl}/posts.json',
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
-      'Api-key':
-          '699667f923e65fac39b632b0d9b2db0d9ee40f9da15480ad5a4bcb3c1b095b7a',
-      'Api-Username': 'gestionarlaweb',
+      'Api-key': '${Environment.apiKey}',
+      'Api-Username': '${Environment.userName}',
     },
     body: jsonEncode(<String, String>{
       'title': title,
