@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 const _URL_TOPICS = 'https://mdiscourse.keepcoding.io';
 
 class UsersService with ChangeNotifier {
-  List<DirectoryItem> listUsers = [];
+  List<Users> listUsers = [];
 
   UsersService() {
     try {

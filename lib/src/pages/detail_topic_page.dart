@@ -34,6 +34,37 @@ class DetailTopicPage extends StatelessWidget {
               ],
             ),
           ),
+
+          Padding(
+            padding: const EdgeInsets.only(top: 200.0),
+            child: ListView(
+              // Segunda Tarjeta listado de tarjetas de GET Posts)
+              children: <Widget>[
+                Card(
+                  child: Column(
+                    //mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      const ListTile(
+                        leading: CircleAvatar(
+                          backgroundImage:
+                              AssetImage('assets/img/no-image.png'),
+                          radius: 28,
+                        ),
+                        title:
+                            Text('RAW: prueba 2 a contestar un topic de david'),
+                        subtitle: Text('User que ha hecho POST al topic'),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 20.0),
+                        child: Text('updated_at: 2020-11-15T21:15:29.225Z'),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // ),
         ],
       ),
     );
@@ -92,7 +123,6 @@ class _BottomBar extends StatelessWidget {
                             Container(
                               child: Text(
                                 '${topic.postsCount}',
-                                // style: TextStyle(fontFamily: 'AvenirRegular')
                               ),
                             ),
                             Container(

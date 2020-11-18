@@ -16,13 +16,13 @@ class UsersResponse {
     this.loadMoreDirectoryItems,
   });
 
-  List<DirectoryItem> directoryItems;
+  List<Users> directoryItems;
   int totalRowsDirectoryItems;
   String loadMoreDirectoryItems;
 
   factory UsersResponse.fromJson(Map<String, dynamic> json) => UsersResponse(
-        directoryItems: List<DirectoryItem>.from(
-            json["directory_items"].map((x) => DirectoryItem.fromJson(x))),
+        directoryItems: List<Users>.from(
+            json["directory_items"].map((x) => Users.fromJson(x))),
         totalRowsDirectoryItems: json["total_rows_directory_items"],
         loadMoreDirectoryItems: json["load_more_directory_items"],
       );
@@ -35,8 +35,8 @@ class UsersResponse {
       };
 }
 
-class DirectoryItem {
-  DirectoryItem({
+class Users {
+  Users({
     this.id,
     this.timeRead,
     this.likesReceived,
@@ -60,7 +60,7 @@ class DirectoryItem {
   int daysVisited;
   User user;
 
-  factory DirectoryItem.fromJson(Map<String, dynamic> json) => DirectoryItem(
+  factory Users.fromJson(Map<String, dynamic> json) => Users(
         id: json["id"],
         timeRead: json["time_read"],
         likesReceived: json["likes_received"],

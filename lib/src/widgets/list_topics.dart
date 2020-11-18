@@ -2,9 +2,11 @@ import 'package:discourse/src/models/topics_models.dart';
 import 'package:discourse/src/models/users_models.dart';
 import 'package:flutter/material.dart';
 
+String sized;
+
 class ListTopics extends StatelessWidget {
   final List<Topic> topics;
-  final List<DirectoryItem> users;
+  final List<Users> users; // Para el avatar
 
   const ListTopics(this.topics, this.users);
 
@@ -25,7 +27,7 @@ class ListTopics extends StatelessWidget {
 
 class _List extends StatelessWidget {
   final Topic topic;
-  final DirectoryItem user;
+  final Users user;
   final int index;
 
   const _List({
@@ -50,6 +52,7 @@ class _List extends StatelessWidget {
                 ListTile(
                   leading: _Avatar(
                     user: user,
+                    topic: topic,
                   ),
                   title: _UserName(topic: topic),
                   subtitle: _Created(topic: topic),
@@ -73,85 +76,88 @@ class _BottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Container(
-        decoration: BoxDecoration(color: const Color(0xfff8f8f8)),
-        padding: EdgeInsets.symmetric(vertical: 8.0),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 10.0),
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 8.0),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 45.0),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                              child: Text(
-                                '${topic.postsCount}',
-                                // style: TextStyle(fontFamily: 'AvenirRegular')
+          decoration: BoxDecoration(color: const Color(0xfff8f8f8)),
+          padding: EdgeInsets.symmetric(vertical: 8.0),
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 45.0),
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                child: Text(
+                                  '${topic.postsCount}',
+                                  // style: TextStyle(fontFamily: 'AvenirRegular')
+                                ),
                               ),
-                            ),
-                            Container(
-                              child: Icon(
-                                Icons.format_list_numbered,
-                                size: 20.0,
+                              Container(
+                                child: Icon(
+                                  Icons.format_list_numbered,
+                                  size: 20.0,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 15.0),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                              child: Text(
-                                '${topic.postsCount}',
-                                //style: TextStyle(fontFamily: 'AvenirBold')
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 15.0),
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                child: Text(
+                                  '${topic.postsCount}',
+                                  //style: TextStyle(fontFamily: 'AvenirBold')
+                                ),
                               ),
-                            ),
-                            Container(
-                              child: Icon(
-                                Icons.view_list,
-                                size: 20.0,
+                              Container(
+                                child: Icon(
+                                  Icons.view_list,
+                                  size: 20.0,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 45.0),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                              child: Text('${topic.replyCount}'),
-                            ),
-                            Container(
-                              child: Icon(
-                                Icons.view_list,
-                                size: 20.0,
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 45.0),
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                child: Text('${topic.replyCount}'),
                               ),
-                            ),
-                          ],
+                              Container(
+                                child: Icon(
+                                  Icons.view_list,
+                                  size: 20.0,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -223,18 +229,32 @@ class _Created extends StatelessWidget {
 }
 
 class _Avatar extends StatelessWidget {
-  const _Avatar({@required this.user});
+  const _Avatar({
+    @required this.user,
+    @required this.topic,
+  });
 
-  final DirectoryItem user;
+  final Users user;
+  final Topic topic;
+
+  final String find = '{size}';
+  final String replaceWith = '50';
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: CircleAvatar(
-        //backgroundImage: AssetImage('assets/img/no-image.png'),
-        backgroundImage: NetworkImage(user.user.avatarTemplate), // [index]
-        radius: 28,
-      ),
-    );
+        //child: (user.user.avatarTemplate != null)
+        // child: (this.user.user.username == this.topic.lastPosterUsername)
+        child: (this.user.user.username != this.topic.lastPosterUsername)
+            ? CircleAvatar(
+                backgroundImage: NetworkImage(
+                    'https://mdiscourse.keepcoding.io/${user.user.avatarTemplate.replaceAll(find, replaceWith)}'), // [index]
+                radius: 28,
+              )
+            : CircleAvatar(
+                backgroundImage:
+                    AssetImage('assets/img/no-image.png'), // [index]
+                radius: 28,
+              ));
   }
 }

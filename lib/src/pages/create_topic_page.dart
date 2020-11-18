@@ -1,7 +1,37 @@
 import 'dart:io';
 
+import 'dart:async';
+import 'dart:convert';
+
+import 'package:discourse/src/models/create_topic_model.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:http/http.dart' as http;
+
 import 'package:discourse/src/widgets/bar_desing.dart';
 import 'package:flutter/material.dart';
+
+Future<CreateTopictResponse> createTopic(String title) async {
+  final http.Response response = await http.post(
+    'https://mdiscourse.keepcoding.io/posts.json',
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+      'Api-key':
+          '699667f923e65fac39b632b0d9b2db0d9ee40f9da15480ad5a4bcb3c1b095b7a',
+      'Api-Username': 'gestionarlaweb',
+    },
+    body: jsonEncode(<String, String>{
+      'title': title,
+      'raw': 'Raw por defecto con un mínimo de más de 20 caracteres',
+    }),
+  );
+  print(response.statusCode);
+  if (response.statusCode == 200) {
+    return CreateTopictResponse.fromJson(jsonDecode(response.body));
+  } else {
+    print(response.body);
+    throw Exception('Failed to create Topic.');
+  }
+}
 
 class CreateTopicPage extends StatefulWidget {
   @override
@@ -9,7 +39,9 @@ class CreateTopicPage extends StatefulWidget {
 }
 
 class _CreateTopicPageState extends State<CreateTopicPage> {
-  String _myTopicString;
+  // Controller
+  final TextEditingController _controller = TextEditingController();
+  Future<CreateTopictResponse> _futureTopic;
 
   @override
   Widget build(BuildContext context) {
@@ -29,25 +61,41 @@ class _CreateTopicPageState extends State<CreateTopicPage> {
           Padding(
             padding:
                 const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
-            child: _myInput(),
+            child: (_futureTopic == null)
+                ? Column(
+                    children: <Widget>[
+                      TextField(
+                        controller: _controller,
+                        decoration: InputDecoration(hintText: 'Enter Title'),
+                      ),
+                      RaisedButton(
+                        color: Colors.blue,
+                        textColor: Colors.white,
+                        child: Text('Create'),
+                        onPressed: () => {
+                          setState(
+                            () {
+                              _futureTopic = createTopic(_controller.text);
+                            },
+                          ),
+                        },
+                      ),
+                    ],
+                  )
+                : FutureBuilder<CreateTopictResponse>(
+                    future: _futureTopic,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return _Dialog();
+                      } else if (snapshot.hasError) {
+                        return Text("${snapshot.error}");
+                      }
+                      return CircularProgressIndicator();
+                    },
+                  ),
           ),
         ],
       ),
-    );
-  }
-
-  Widget _myInput() {
-    return TextField(
-      autofocus: true,
-      textCapitalization: TextCapitalization.sentences,
-      decoration: InputDecoration(hintText: 'Write your new topic'),
-      onChanged: (value) {
-        setState(() {
-          _myTopicString = value;
-          print(_myTopicString);
-        });
-      },
-      onSubmitted: (value) => Navigator.pop(context),
     );
   }
 }
@@ -74,5 +122,12 @@ class _TextTitleTopiciOs extends StatelessWidget {
         style: TextStyle(color: Colors.black),
       ),
     );
+  }
+}
+
+class _Dialog extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoAlertDialog(title: Text('Register new topic success !'));
   }
 }
