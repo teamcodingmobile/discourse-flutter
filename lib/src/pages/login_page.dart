@@ -1,3 +1,4 @@
+import 'package:discourse/src/global/environment.dart';
 import 'package:discourse/src/models/login_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,7 @@ import 'dart:convert';
 
 Future<LoginResponse> loginUser(String username) async {
   final http.Response response = await http.post(
-    'https://mdiscourse.keepcoding.io/users/$username.json',
+    '${Environment.apiUrl}/users/$username.json',
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },

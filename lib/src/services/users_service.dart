@@ -1,8 +1,7 @@
+import 'package:discourse/src/global/environment.dart';
 import 'package:discourse/src/models/users_models.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
-const _URL_TOPICS = 'https://mdiscourse.keepcoding.io';
 
 class UsersService with ChangeNotifier {
   List<Users> listUsers = [];
@@ -16,7 +15,7 @@ class UsersService with ChangeNotifier {
   }
 
   getlistUsers() async {
-    final url = '$_URL_TOPICS/directory_items.json?period=all';
+    final url = '${Environment.apiUrl}/directory_items.json?period=all';
     final response = await http.get(url);
     if (response.statusCode == 200) {
       print("response Status ${response.statusCode}");

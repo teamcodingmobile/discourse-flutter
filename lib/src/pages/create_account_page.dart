@@ -1,3 +1,4 @@
+import 'package:discourse/src/global/environment.dart';
 import 'package:discourse/src/models/new_user_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,7 @@ import 'dart:convert';
 Future<NewUserResponse> createUser(
     String name, email, password, username) async {
   final http.Response response = await http.post(
-    'https://mdiscourse.keepcoding.io/users.json',
+    '${Environment.apiUrl}/users.json',
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
