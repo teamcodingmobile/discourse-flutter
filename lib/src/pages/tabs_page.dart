@@ -1,4 +1,6 @@
 import 'package:discourse/src/pages/tab1_page.dart';
+import 'package:discourse/src/pages/tab2_page.dart';
+import 'package:discourse/src/pages/tab3_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -27,7 +29,7 @@ class _Navigation extends StatelessWidget {
         BottomNavigationBarItem(
             icon: Icon(Icons.filter_list), title: Text('Topics')),
         BottomNavigationBarItem(
-            icon: Icon(Icons.view_list), title: Text('New topic')),
+            icon: Icon(Icons.search), title: Text('Search')),
         BottomNavigationBarItem(
             icon: Icon(Icons.person_outline), title: Text('Profile')),
       ],
@@ -44,13 +46,10 @@ class _Pages extends StatelessWidget {
       controller: navigationModel.pageController,
       physics: NeverScrollableScrollPhysics(),
       children: <Widget>[
+        //HomePage(),
         Tab1Page(),
-        Container(
-          color: Colors.green,
-        ),
-        Container(
-          color: Colors.blueGrey,
-        ),
+        Tab2Page(),
+        Tab3Page(),
       ],
     );
   }
