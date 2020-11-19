@@ -42,7 +42,6 @@ class DetailTopicPage extends StatelessWidget {
               children: <Widget>[
                 Card(
                   child: Column(
-                    //mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       const ListTile(
                         leading: CircleAvatar(
@@ -50,13 +49,12 @@ class DetailTopicPage extends StatelessWidget {
                               AssetImage('assets/img/no-image.png'),
                           radius: 28,
                         ),
-                        title:
-                            Text('RAW: prueba 2 a contestar un topic de david'),
-                        subtitle: Text('User que ha hecho POST al topic'),
+                        title: Text('Prueba 2 a contestar un topic de david'),
+                        subtitle: Text('David Rabassa'),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 20.0),
-                        child: Text('updated_at: 2020-11-15T21:15:29.225Z'),
+                        child: Text('2020-11-15'),
                       ),
                     ],
                   ),
